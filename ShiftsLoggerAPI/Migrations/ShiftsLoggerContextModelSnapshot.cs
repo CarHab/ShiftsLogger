@@ -66,13 +66,11 @@ namespace ShiftsLoggerAPI.Migrations
 
             modelBuilder.Entity("ShiftsLoggerAPI.Models.Shift", b =>
                 {
-                    b.HasOne("ShiftsLoggerAPI.Models.Worker", "Worker")
+                    b.HasOne("ShiftsLoggerAPI.Models.Worker", null)
                         .WithMany()
                         .HasForeignKey("WorkerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Worker");
                 });
 #pragma warning restore 612, 618
         }

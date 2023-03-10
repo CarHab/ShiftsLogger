@@ -13,6 +13,5 @@ public class Shift
     [Required]
     public DateTime End { get; set; }
 
-    [Required]
-    public Worker? Worker { get; set; }
+    public int WorkerId { get; set; }
 }

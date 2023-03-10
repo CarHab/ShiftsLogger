@@ -12,8 +12,8 @@ using ShiftsLoggerAPI.Models;
 namespace ShiftsLoggerAPI.Migrations
 {
     [DbContext(typeof(ShiftsLoggerContext))]
-    [Migration("20230309234057_CreateShiftsLoggerDB")]
-    partial class CreateShiftsLoggerDB
+    [Migration("20230310120305_CreateDB")]
+    partial class CreateDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,13 +69,11 @@ namespace ShiftsLoggerAPI.Migrations
 
             modelBuilder.Entity("ShiftsLoggerAPI.Models.Shift", b =>
                 {
-                    b.HasOne("ShiftsLoggerAPI.Models.Worker", "Worker")
+                    b.HasOne("ShiftsLoggerAPI.Models.Worker", null)
                         .WithMany()
                         .HasForeignKey("WorkerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Worker");
                 });
 #pragma warning restore 612, 618
         }

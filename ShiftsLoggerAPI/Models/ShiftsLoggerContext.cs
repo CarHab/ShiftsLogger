@@ -16,4 +16,12 @@ public class ShiftsLoggerContext : DbContext
     {
         optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ShiftsLogger;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Shift>()
+            .HasOne<Worker>()
+            .WithMany()
+            .HasForeignKey(b => b.WorkerId);
+    }
 }

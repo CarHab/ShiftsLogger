@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ShiftsLoggerAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateShiftsLoggerDB : Migration
+    public partial class CreateDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
