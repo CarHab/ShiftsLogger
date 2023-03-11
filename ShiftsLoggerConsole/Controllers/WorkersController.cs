@@ -21,6 +21,14 @@ public class WorkersController
         return JsonConvert.DeserializeObject<List<WorkerModel>>(json);
     }
 
+    public async Task<WorkerModel> GetOneWorker(string id)
+    {
+        using HttpClient client = new();
+        string json = await client.GetStringAsync($"{BaseUrl}Workers/{id}");
+
+        return JsonConvert.DeserializeObject<WorkerModel>(json);
+    }
+
     public async Task<bool> CreateWorker(string name)
     {
         string json = JsonConvert.SerializeObject(new

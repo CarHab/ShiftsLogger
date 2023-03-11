@@ -17,9 +17,31 @@ namespace ShiftsLoggerAPI.Controllers
 
         // GET: api/Shifts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Shift>>> GetShifts()
+        public async Task<ActionResult<IEnumerable<ShiftDTO>>> GetShifts()
         {
-            return await _context.Shifts.ToListAsync();
+            var query = from shifts in _context.Shifts
+                        join workers in _context.Workers
+                        on shifts.WorkerId equals workers.Id
+                        select new ShiftDTO
+                        {
+                            Id = shifts.Id,
+                            Start = shifts.Start,
+                            End = shifts.End,
+                            Name = workers.Name
+                        };
+
+            return query.ToList();
+        }
+
+        // GET: api/worker/5
+        [HttpGet("Worker/{workerId}")]
+        public async Task<ActionResult<IEnumerable<Shift>>> GetShiftsByWorker(int workerId)
+        {
+            var query = from shifts in _context.Shifts
+                        where shifts.WorkerId == workerId
+                        select shifts;
+
+            return query.ToList();
         }
 
         // GET: api/Shifts/5
